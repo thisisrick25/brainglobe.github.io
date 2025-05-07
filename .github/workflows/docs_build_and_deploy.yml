@@ -37,13 +37,13 @@ jobs:
       - name: Fetch and install external packages
         run: python fetch_external.py
 
-      - name: Debug Python Environment (debug)
-        run: |
-          python --version
-          python -c "import brainglobe_atlasapi; print(brainglobe_atlasapi.__file__)"
+      # - name: Debug Python Environment (debug)
+      #   run: |
+      #     python --version
+      #     python -c "import brainglobe_atlasapi; print(brainglobe_atlasapi.__file__)"
 
       - name: List external folder (debug)
-        run: ls external
+        run: ls external/brainglobe-atlasapi
 
       # - name: Try importing brainglobe_atlasapi
       #   run: python -c "import sys; sys.path.insert(0, 'external/brainglobe-atlasapi'); import brainglobe_atlasapi; print(brainglobe_atlasapi.__file__)"
