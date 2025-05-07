@@ -46,6 +46,9 @@ jobs:
       - name: List external folder (debug)
         run: ls external
 
+      - name: Try importing brainglobe_atlasapi
+        run: python -c "import sys; sys.path.insert(0, 'external/brainglobe-atlasapi'); import brainglobe_atlasapi; print(brainglobe_atlasapi.__file__)"
+
       - uses: neuroinformatics-unit/actions/build_sphinx_docs@v2
         with:
           check-links: false
