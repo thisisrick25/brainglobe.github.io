@@ -21,4 +21,4 @@ for url, path in REPOS:
     else:
         subprocess.run(["git", "-C", path, "pull"])
         
-    subprocess.run(["pip", "install", path])
+    subprocess.run(["pip", "install", "-e", path])
