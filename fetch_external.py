@@ -17,7 +17,7 @@ REPOS = [
 
 for url, path in REPOS:
     if not os.path.exists(path):
-        subprocess.run(["git", "clone", "--mirror", url, path])
+        subprocess.run(["git", "clone", url, path])
     else:
         subprocess.run(["git", "-C", path, "pull"])
         
