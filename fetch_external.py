@@ -7,7 +7,7 @@ import os
 import subprocess
 
 REPOS = [
-    ("https://github.com/brainglobe/brainglobe-atlasapi.git", "external/brainglobe-atlasapi"),
+    ("https://github.com/thisisrick25/brainglobe-atlasapi.git", "external/brainglobe-atlasapi", "test"),
     # ("https://github.com/brainglobe/brainglobe-space.git", "external/brainglobe-space"),
     # ("https://github.com/brainglobe/brainglobe-utils.git", "external/brainglobe-utils"),
     # ("https://github.com/brainglobe/brainreg.git", "external/brainreg"),
@@ -15,10 +15,12 @@ REPOS = [
     # Add more (url, path) pairs as needed
 ]
 
-for url, path in REPOS:
+for url, path, branch in REPOS:
     if not os.path.exists(path):
-        subprocess.run(["git", "clone", url, path])
+        subprocess.run(["git", "clone", "--branch", branch, url, path])
     else:
-        subprocess.run(["git", "-C", path, "pull"])
+        subprocess.run(["git", "-C", path, "fetch"], check=True)
+        subprocess.run(["git", "-C", path, "checkout", branch], check=True)
+        subprocess.run(["git", "-C", path, "pull", "origin", branch], check=True)
         
     subprocess.run(["pip", "install", "-e", path])
