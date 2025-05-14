@@ -27,30 +27,18 @@ jobs:
     name: Build Sphinx Docs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      # 1. Call the reusable build_sphinx_docs action
+      #    The action itself now handles all checkouts and installations.
+      - name: Build documentation using reusable action
+        uses: thisisrick25/actions/build_sphinx_api_docs@test # Or local path
         with:
           python-version: '3.11'
-
-      - name: Fetch and install external packages
-        run: python fetch_external.py
-
-      - name: Debug Python Environment (debug)
-        run: |
-          python --version
-          pip list --format=columns
-
-      - name: List external folder (debug)
-        run: ls external/brainglobe-atlasapi
-
-      - name: Try importing brainglobe_atlasapi (debug)
-        run: python -c "import sys; sys.path.insert(0, 'external/brainglobe-atlasapi'); import brainglobe_atlasapi; print(brainglobe_atlasapi.__file__)"
-
-      - uses: neuroinformatics-unit/actions/build_sphinx_docs@v2
-        with:
           check-links: false
+          main-repo-fetch-tags: false # For the brainglobe.github.io repo itself
+          external-repositories: |
+            brainglobe/brainglobe-atlasapi@main external/brainglobe-atlasapi
+            # brainglobe/brainglobe-cellfinder@v0.4.1 external/brainglobe-cellfinder # Example with a tag
+            # Add more repositories as needed
 
   deploy_sphinx_docs:
     name: Deploy Sphinx Docs
