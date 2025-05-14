@@ -37,8 +37,6 @@ jobs:
           main-repo-fetch-tags: false # For the brainglobe.github.io repo itself
           external-repositories: |
             brainglobe/brainglobe-atlasapi@main external/brainglobe-atlasapi
-            # brainglobe/brainglobe-cellfinder@v0.4.1 external/brainglobe-cellfinder # Example with a tag
-            # Add more repositories as needed
 
   deploy_sphinx_docs:
     name: Deploy Sphinx Docs
