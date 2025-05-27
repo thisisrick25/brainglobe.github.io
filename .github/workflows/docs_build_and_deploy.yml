@@ -27,10 +27,9 @@ jobs:
     name: Build Sphinx Docs
     runs-on: ubuntu-latest
     steps:
-      # 1. Call the reusable build_sphinx_docs action
       #    The action itself now handles all checkouts and installations.
       - name: Build documentation using reusable action
-        uses: thisisrick25/actions/build_sphinx_api_docs@test # Or local path
+        uses: thisisrick25/actions/build_sphinx_api_docs@test
         with:
           python-version: '3.11'
           check-links: false
