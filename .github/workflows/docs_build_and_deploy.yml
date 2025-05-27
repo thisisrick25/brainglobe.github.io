@@ -29,7 +29,7 @@ jobs:
     steps:
       #    The action itself now handles all checkouts and installations.
       - name: Build documentation using reusable action
-        uses: thisisrick25/actions/build_sphinx_api_docs@test
+        uses: thisisrick25/actions/build_sphinx_api_docs@thisisrick25/issue83
         with:
           python-version: '3.11'
           check-links: false
