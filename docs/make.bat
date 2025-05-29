@@ -25,6 +25,16 @@ if errorlevel 9009 (
 
 if "%1" == "" goto help
 
+if "%1" == "clean" (
+	echo Cleaning build directory...
+	if not exist %BUILDDIR% (
+		echo Build directory does not exist, nothing to clean.
+		goto end
+	)
+    rmdir /s /q %BUILDDIR%
+    goto end
+)
+
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 goto end
 
