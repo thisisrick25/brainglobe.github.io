@@ -32,6 +32,7 @@ jobs:
         uses: thisisrick25/actions/build_sphinx_api_docs@thisisrick25/issue83
         with:
           python-version: '3.11'
+          use-make: true
           check-links: false
           main-repo-fetch-tags: false # For the brainglobe.github.io repo itself
           external-repositories: |
