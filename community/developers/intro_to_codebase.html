@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to the BrainGlobe codebase for developers &#8212; BrainGlobe</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=1227d6e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'community/developers/intro_to_codebase';</script>
+    <link rel="canonical" href="https://brainglobe.info/community/developers/intro_to_codebase.html" />
+    <link rel="icon" href="../../_static/brainglobe.png"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tooling" href="tooling.html" />
+    <link rel="prev" title="Developer’s guide" href="index.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/brainglobe.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/brainglobe.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">BrainGlobe</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Developer’s guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction to the BrainGlobe codebase for developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tooling.html">Tooling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_releases.html">Publishing new releases</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="specific_repos.html">Specific Repository Developer Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-atlasapi/index.html">brainglobe-atlasapi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-meta/index.html">brainglobe-meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-utils/index.html">brainglobe-utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-workflows/index.html">brainglobe-workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/cellfinder-core/index.html">cellfinder.core</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/brainglobe/.github/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../roadmaps/index.html">Roadmaps</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../roadmaps/may-2024.html">May 2024</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../roadmaps/november-2023.html">November 2023</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../releases/index.html">Releases</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../releases/v1/index.html">BrainGlobe version 1 overview</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/v1/brainreg.html">Version 1: changes to registration and segmentation tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/v1/cellfinder-migration.html">Version 1: Cellfinder migration and <code class="docutils literal notranslate"><span class="pre">brainglobe-workflows</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/v1/cellfinder-core-and-plugin-merge.html">Version 1: changes to the cellfinder backend and plugin</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../courses/index.html">Courses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../courses/materials/whole-brain-analysis/index.html">Whole brain microscopy analysis with BrainGlobe and napari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../courses/scheduled/oct-2024/index.html">October 7th-8th 2024</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../courses/scheduled/dec-2023/index.html">December 6th 2023</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../external-tools.html">Software built by the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://gin.g-node.org/BrainGlobe">Sample datasets</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Community</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Developer’s guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Introduction to the BrainGlobe codebase for developers</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-the-brainglobe-codebase-for-developers">
+<h1>Introduction to the BrainGlobe codebase for developers<a class="headerlink" href="#introduction-to-the-brainglobe-codebase-for-developers" title="Link to this heading">#</a></h1>
+<p>This is an introduction to the high-level organisation of the BrainGlobe codebase for developers.
+It serves as an introduction for new contributors and as a reference for all contributors.</p>
+<p>It will cover BrainGlobe’s guiding principles for development and the default software architecture for BrainGlobe repositories.
+Note that this high-level organisation is (at least partially) aspirational, and implementing it is work-in-progress (see <a class="reference internal" href="../roadmaps/index.html"><span class="std std-doc">the current roadmap</span></a> and the <a class="reference external" href="https://github.com/orgs/brainglobe/projects/2">Core Development Project Board</a>)</p>
+<section id="guiding-principles-for-development">
+<h2>Guiding principles for development<a class="headerlink" href="#guiding-principles-for-development" title="Link to this heading">#</a></h2>
+<p>The first guiding principle is that BrainGlobe should be easy-to-use by everyone.
+In practice, this means that BrainGlobe code should be independent of species of interest or image modality, and should be installable and runnable by anyone with a reasonably modern laptop within minutes.
+Users should be able to achieve their aims regardless of their level of programming expertise.
+This means we aim to cater to a range of potential users.</p>
+<p>As a secondary guiding principle, we additionally aim to make the codebase <strong>easy to maintain</strong>, and <strong>easy to contribute to</strong>, where this doesn’t interfere with the first principle.</p>
+<p>Choices around the software architecture and technology stack (detailed below) are taken with these principles in mind.</p>
+<section id="examples-of-guiding-principles-in-practice">
+<h3>Examples of guiding principles in practice<a class="headerlink" href="#examples-of-guiding-principles-in-practice" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ease of installation: through the metapackage, we provide a one-line command to install all BrainGlobe tools at once. None of the packages depend on anything other than Python (we’ve removed historical compiled code), and are therefore easy to install cross-platform.</p></li>
+<li><p>Accessibility: we aim to provide a Graphical User Interface (GUI) for all BrainGlobe tools. By asking users for feedback, we ensure that the GUI provides a nice user experience.</p></li>
+<li><p>Ease of use through Python/interoperability: we aim to provide a well-documented Python API for all BrainGlobe tools.</p></li>
+<li><p>Performance: By running weekly benchmarks comparing the latest release with the development version, we guarantee that performance will not deteriorate as BrainGlobe evolves.</p></li>
+<li><p>Species/modality independent: none of the code makes any assumptions about the imaging modality or the species of the model organism of interest. We provide atlases for a variety of model organisms.</p></li>
+<li><p>Usability: we sacrifice the code simplicity provided by <code class="docutils literal notranslate"><span class="pre">magicgui</span></code> in exchange for fine-grained control of the user experience by writing brainglobe widgets in <code class="docutils literal notranslate"><span class="pre">qtpy</span></code>. This is an example where the first guiding principle takes priority over the second.</p></li>
+<li><p>Easy-to-maintain: we move functionality used by more than one independent BrainGlobe tool to <code class="docutils literal notranslate"><span class="pre">brainglobe-utils</span></code> to reduce code duplication and make maintenance easier.</p></li>
+</ul>
+</section>
+</section>
+<section id="brainglobe-tools">
+<h2>BrainGlobe Tools<a class="headerlink" href="#brainglobe-tools" title="Link to this heading">#</a></h2>
+<p>Code providing functionality related to a specific analysis or visualisation step is referred to as a BrainGlobe “tool”.
+Each BrainGlobe tool has its own Github repository on the BrainGlobe organisation.</p>
+<p>Currently stable tools are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainglobe-atlasapi"><code class="docutils literal notranslate"><span class="pre">brainglobe-atlasapi</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainglobe-heatmap"><code class="docutils literal notranslate"><span class="pre">brainglobe-heatmap</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainglobe-segmentation"><code class="docutils literal notranslate"><span class="pre">brainglobe-segmentation</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainreg"><code class="docutils literal notranslate"><span class="pre">brainreg</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainrender"><code class="docutils literal notranslate"><span class="pre">brainrender</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/cellfinder"><code class="docutils literal notranslate"><span class="pre">cellfinder</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/morphapi"><code class="docutils literal notranslate"><span class="pre">morphapi</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainglobe-space"><code class="docutils literal notranslate"><span class="pre">brainglobe-space</span></code></a></p></li>
+</ul>
+<p>Tools currently in development are</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainglobe-registration"><code class="docutils literal notranslate"><span class="pre">brainglobe-registration</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/brainglobe/brainrender-napari"><code class="docutils literal notranslate"><span class="pre">brainrender-napari</span></code></a></p></li>
+</ul>
+<p>The BrainGlobe Github organisation also hosts the <a class="reference internal" href="repositories/brainglobe-meta/index.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">brainglobe</span></code> (meta-)package</span></a> and the <a class="reference internal" href="repositories/brainglobe-workflows/index.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">brainglobe-workflows</span></code> collection</span></a> in separate repositories (which are not tools in themselves), as well as the <a class="reference external" href="https://github.com/brainglobe/brainglobe-utils">utility package <code class="docutils literal notranslate"><span class="pre">brainglobe-utils</span></code></a>.</p>
+<p>As can be seen from the package names, we follow a <strong>loose</strong> naming convention for packages following a pattern of {brain(globe) || cell}-{noun describing what the tool does}. The most important criterion is the expressiveness of the name.
+The <code class="docutils literal notranslate"><span class="pre">bg-</span></code> prefix for BrainGlobe tools has been discontinued.</p>
+<section id="user-data">
+<h3>User data<a class="headerlink" href="#user-data" title="Link to this heading">#</a></h3>
+<p>User data is stored locally in hidden folders, usually in the user’s <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> directory.
+These folders are usually in appropriate subfolders of <code class="docutils literal notranslate"><span class="pre">.brainglobe</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">~/.brainglobe/cellfinder/</span></code>).
+Data that we provide (e.g. atlas data and test data) should be hosted on <a class="reference external" href="https://gin.g-node.org/BrainGlobe/">GIN/BrainGlobe</a>, and not on GitHub itself (unless it’s a small package-specific text file, in which case it can go in <a class="reference external" href="https://docs.python.org/3/library/importlib.resources.html">the package resources and accessed via <code class="docutils literal notranslate"><span class="pre">importlib</span></code></a>).
+We rely on <a class="reference external" href="https://www.fatiando.org/pooch/latest/">the <code class="docutils literal notranslate"><span class="pre">pooch</span></code> package</a> to fetch data from GIN.</p>
+</section>
+<section id="default-architecture-for-brainglobe-tools">
+<h3>Default architecture for BrainGlobe Tools<a class="headerlink" href="#default-architecture-for-brainglobe-tools" title="Link to this heading">#</a></h3>
+<p>By default, each BrainGlobe tool should be organised into up to three distinct submodules: <code class="docutils literal notranslate"><span class="pre">core</span></code>, <code class="docutils literal notranslate"><span class="pre">qt</span></code>, and <code class="docutils literal notranslate"><span class="pre">napari</span></code>.
+These submodules should live in the same GitHub repository and are packaged together on PyPI.
+It is acceptable to deviate from the default where there is a reason to (e.g. not all tools will have a GUI).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">core</span></code> contains the central logic to use this tool and exposes it through a Python API</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qt</span></code> contains user-friendly widgets and related Qt code that is implemented using <code class="docutils literal notranslate"><span class="pre">qtpy</span></code>. Each of these widgets provides an intuitive graphical user interface for one part (or few related parts) of the Python API defined in <code class="docutils literal notranslate"><span class="pre">core</span></code>.
+The widgets additionally emit Qt signals that any frontend (e.g. the code in <code class="docutils literal notranslate"><span class="pre">napari</span></code>) can connect to.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">napari</span></code> contains at least one Napari plugin that connects to signals in <code class="docutils literal notranslate"><span class="pre">qt</span></code> and implements a napari-specific response (e.g. adding a Napari layer) to them.</p></li>
+</ul>
+<p>The architecture has a number of advantages;</p>
+<ul class="simple">
+<li><p>The modularity ensure each of submodule can (and should be) tested individually in the first instance</p></li>
+<li><p>Widgets can be re-used outside of napari</p></li>
+<li><p>Integration tests in the same repo to avoid messy CI dependencies</p></li>
+</ul>
+<p>Additionally, keeping the architecture consistent across BrainGlobe tools should make it easier to contribute to several tools once someone has contributed to one tool, due to the familiar codebase organisation.</p>
+</section>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Developer’s guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tooling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tooling</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guiding-principles-for-development">Guiding principles for development</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-guiding-principles-in-practice">Examples of guiding principles in practice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brainglobe-tools">BrainGlobe Tools</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-data">User data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-architecture-for-brainglobe-tools">Default architecture for BrainGlobe Tools</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="sphinx-version">
+Created using <a href="https://sphinx-doc.org/">Sphinx</a> 8.1.3.
+<br/>
+</p>
+<p class="theme-version">
+Built with the
+<a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
+0.16.1.
+</p></div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><div class="things-in-a-row">
+</div></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

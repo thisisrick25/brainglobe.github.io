@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Silicon probe tracking &#8212; BrainGlobe</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=1227d6e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/silicon-probe-tracking';</script>
+    <link rel="canonical" href="https://brainglobe.info/tutorials/silicon-probe-tracking.html" />
+    <link rel="icon" href="../_static/brainglobe.png"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analyze and visualize bulk fluorescence tracing data" href="tracing-tracking.html" />
+    <link rel="prev" title="Retraining the cellfinder classification network" href="cellfinder-retraining.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/brainglobe.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/brainglobe.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">BrainGlobe</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../documentation/index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community/index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../documentation/index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community/index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blog/index.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="visualise-atlas-napari.html">Visualise an atlas in napari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage-atlases-in-GUI.html">Download an atlas through napari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-whole-brain-registration.html">Registering a whole-brain image to an atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="segmenting-1d-tracks.html">Segmenting a 1D track</a></li>
+<li class="toctree-l1"><a class="reference internal" href="segmenting-3d-structures.html">Segmenting 2/3D structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transform-cells-atlas.html">Analysing brainwide distribution of cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellfinder-detection.html">Detecting cells in 3D with cellfinder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cellfinder-retraining.html">Retraining the cellfinder classification network</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Silicon probe tracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracing-tracking.html">Analyze and visualize bulk fluorescence tracing data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="brainmapper/index.html">Whole brain cell detection and registration with the <code class="docutils literal notranslate"><span class="pre">brainmapper</span></code> command line tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="brainmapper/setting-up.html">Setting up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="brainmapper/running-brainmapper.html">Running <code class="docutils literal notranslate"><span class="pre">brainmapper</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="brainmapper/visualising-the-results.html">Visualising the results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="brainmapper/exploring-the-numerical-results.html">Exploring the numerical results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="brainmapper/visualising-your-data-in-brainrender.html">Visualising your data in brainrender</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="template-builder-pre-align.html">Aligning samples for template building</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Silicon probe tracking</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="silicon-probe-tracking">
+<h1>Silicon probe tracking<a class="headerlink" href="#silicon-probe-tracking" title="Link to this heading">#</a></h1>
+<p>Analysis of silicon probe tracks (e.g., Neuropixels) in brains imaged post-hoc
+in a standard coordinate space</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The aim of electrophysiological recordings using silicon probes is to record neuronal activity across brain regions
+and animals. It is therefore fundamental to record precisely the localisation of the probe (or multiple probes) in
+each brain and be able to compare probes across animals.</p>
+<p>Here we describe a tool for the analysis of silicon probe tracks (e.g. <a class="reference external" href="https://www.neuropixels.org/">Neuropixels</a>)
+in brains imaged post-hoc in a standard coordinate space. This tool is packaged with brainreg, as part of the
+BrainGlobe suite of computational neuroanatomy tools.</p>
+</section>
+<section id="before-tracing-probe-tracks">
+<h2>Before tracing probe tracks<a class="headerlink" href="#before-tracing-probe-tracks" title="Link to this heading">#</a></h2>
+<p>In order to label the probe penetration track in the brain, the probe is delicately coated with DiI
+(Molecular Probes, Cat# V22885) using a pipette tip (<strong>Fig. 1</strong>, left). The probe is then attached to a
+micromanipulator, and the probe tip lowered to touch the surface of the brain (e.g. in head-fixed mice).
+This position is recorded as position “zero”. The probe is then introduced in the brain at a speed of ~10μm
+per second to the desired penetration depth (in our case 1750μm; <strong>Fig. 1</strong>, centre).</p>
+<p><img alt="Figure 1." src="../_images/brainglobe-segmentation-fig1.webp" />
+<strong>Figure 1.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The final penetration depth has to be recorded precisely (e.g., with the micromanipulator readout) in order to know
+how much of the probe shank was used to record neuronal activity. This will allow comparing traced probe tracks and
+electrophysiological data.</p>
+</div>
+<p>When the experiment is done and the probe is retracted, the animal is anaesthetised and perfused with PFA 4% following
+standard perfusion protocols. The brain is carefully extracted and left in PFA 4% overnight.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To ensure high quality image registration, it is essential that the brain is properly perfused in order to decrease
+the autofluorescence of blood vessels. It is also important that the brain is extracted from the skull carefully in
+order to avoid tissue damage.</p>
+</div>
+<p>The brain is then thoroughly washed with 100mM PBS and imaged (e.g. by
+<a class="reference external" href="https://swcmicroscopy.com/ss_acquisition/">Serial 2-Photon Tomography</a>; <strong>Fig. 1</strong>,
+right). We imaged 2 channels (one where DiI signal is detected and one with background fluorescence only) at a
+resolution of x = 5μm, y = 5μm, z = 20μm.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important to image both the DiI probe signal and the brain’s background fluorescence in two independent channels.
+The background signal will be used to register the brain into standard space (since the probe signal might interfere
+with the quality of registration).</p>
+</div>
+</section>
+<section id="brain-registration-to-an-atlas">
+<h2>Brain registration to an atlas<a class="headerlink" href="#brain-registration-to-an-atlas" title="Link to this heading">#</a></h2>
+<p>To track the probe in standard space, the brain must first be registered to an atlas using brainreg.</p>
+<p>Before registration, brainreg needs to be installed, please follow the instructions
+<a class="reference internal" href="../documentation/brainreg/installation.html"><span class="doc std std-doc">here</span></a>. Once installed, we can proceed to register the imaged brain.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure you activate your conda environment before starting</p>
+</div>
+<p>You will need:</p>
+<ol class="arabic simple">
+<li><p>The path where the brain image stack (DiI signal channel) is located</p></li>
+<li><p>The path where the brain stack (background fluorescence channel) is located. </p></li>
+<li><p>The path where you want the registration result to be saved</p></li>
+<li><p>The resolution at which the brain was imaged</p></li>
+</ol>
+<p><strong>To register your brain to an atlas, please follow the instructions for brainreg
+<a class="reference internal" href="../documentation/brainreg/user-guide/brainreg-napari.html"><span class="doc std std-doc">here</span></a></strong>.</p>
+<p>A new output directory has been created, which contains the registered brain. We are now ready to manually
+trace the probe track.</p>
+</section>
+<section id="probe-track-tracing">
+<h2>Probe track tracing<a class="headerlink" href="#probe-track-tracing" title="Link to this heading">#</a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Make sure your conda environment is still activated!</p>
+</div>
+<p>To open the graphical user interface, open napari and then load the <code class="docutils literal notranslate"><span class="pre">brainglobe-segmentation</span></code> plugin (see
+<a class="reference internal" href="../documentation/brainglobe-segmentation/user-guide/index.html"><span class="doc std std-doc">User guide</span></a>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">brainglobe-segmentation</span></code>graphical user interface opens and shows a set of tools. You can then load your brainreg output
+directory, and follow the main <code class="docutils literal notranslate"><span class="pre">brainglobe-segmentation</span> <span class="pre">instructions</span></code> <a class="reference internal" href="segmenting-1d-tracks.html"><span class="doc std std-doc">here</span></a> for
+segmenting a 1D track. Setting <code class="docutils literal notranslate"><span class="pre">Spline</span> <span class="pre">points</span></code> will determine how many times along the length of the track that
+the brain region is sampled at. This can be used to determine the brain region for each recording site on your probe.</p>
+<p>After the spline fit is performed, a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file will be saved in <code class="docutils literal notranslate"><span class="pre">brainreg_output/segmentation/atlas_space/tracks</span></code> for each track.
+You can then find the brain area for each recording channel by matching the <code class="docutils literal notranslate"><span class="pre">distance</span></code> in the csv file and the
+<code class="docutils literal notranslate"><span class="pre">depth</span></code> to the geometry of your recording probe.</p>
+</section>
+<section id="visualize-the-probe-track-with-brainrender">
+<h2>Visualize the probe track with brainrender<a class="headerlink" href="#visualize-the-probe-track-with-brainrender" title="Link to this heading">#</a></h2>
+<p>If you then click the <code class="docutils literal notranslate"><span class="pre">To</span> <span class="pre">brainrender</span></code> button, a <code class="docutils literal notranslate"><span class="pre">.npy</span></code> file will be saved for each track.
+With <code class="docutils literal notranslate"><span class="pre">brainrender</span></code>, you can load the <code class="docutils literal notranslate"><span class="pre">npy</span></code> file using the <a class="reference internal" href="../documentation/brainrender/usage/scene.html"><span class="doc std std-doc">scene class</span></a>.
+This will provide a 3D interactive display of the probe tracks:</p>
+<p><img alt="brainrender visualisation" src="../_images/probe_tracks_brainrender.png" />
+<strong>Visualisation of two probe tracks using brainrender</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The code to run this example can be found at <a class="reference external" href="https://github.com/brainglobe/brainrender/blob/main/examples/probe_tracks.py">probe_tracks.py</a>.</p>
+</div>
+<p><strong>Tutorial adapted from instructions by</strong> <a class="reference external" href="https://www.sainsburywellcome.org/web/people/mateo-velez-fort"><strong>Mateo Vélez-Fort</strong></a> and <a class="reference external" href="https://www.sainsburywellcome.org/web/people/jingjie-li"><strong>Jingjie Li</strong></a></p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cellfinder-retraining.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Retraining the cellfinder classification network</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tracing-tracking.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analyze and visualize bulk fluorescence tracing data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-tracing-probe-tracks">Before tracing probe tracks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-registration-to-an-atlas">Brain registration to an atlas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probe-track-tracing">Probe track tracing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-probe-track-with-brainrender">Visualize the probe track with brainrender</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="sphinx-version">
+Created using <a href="https://sphinx-doc.org/">Sphinx</a> 8.1.3.
+<br/>
+</p>
+<p class="theme-version">
+Built with the
+<a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
+0.16.1.
+</p></div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><div class="things-in-a-row">
+</div></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,872 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Debugging common error messages &#8212; BrainGlobe</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=1227d6e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/cellfinder/troubleshooting/error-messages';</script>
+    <link rel="canonical" href="https://brainglobe.info/documentation/cellfinder/troubleshooting/error-messages.html" />
+    <link rel="icon" href="../../../_static/brainglobe.png"/>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="morphapi" href="../../morphapi/index.html" />
+    <link rel="prev" title="Speeding up cellfinder" href="speed-up.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/brainglobe.png" class="logo__image only-light" alt=""/>
+    <img src="../../../_static/brainglobe.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">BrainGlobe</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../setting-up/index.html">Setting up</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../setting-up/conda.html">Using conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../setting-up/gpu.html">Setting up your GPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../setting-up/image-definition.html">Image space definition</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../brainglobe-atlasapi/index.html">BrainGlobe Atlas API (brainglobe-atlasapi)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-atlasapi/usage/atlas-details.html">Atlas details</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-atlasapi/usage/python-api.html">Python API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-atlasapi/usage/command-line-interface.html">Command line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-atlasapi/usage/using-the-files-directly.html">Using the files directly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-atlasapi/adding-a-new-atlas.html">Adding a new atlas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../brainglobe-space/index.html">brainglobe-space</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../brainglobe-utils/index.html">brainglobe-utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-utils/transform-widget.html">brainmapper cell transformation widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-utils/image_io.html">Image IO submodule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-utils/citation-module.html">Generating Citations for BrainGlobe tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../brainreg/index.html">brainreg</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/installation.html">Requirements</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/user-guide/brainreg-napari.html">Napari plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/user-guide/brainreg-cli.html">Command line tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/user-guide/parameters.html">Registration parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/user-guide/checking-orientation.html">Checking orientation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/user-guide/output-files.html">Output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/user-guide/visualisation.html">Visualising brainreg output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brainreg/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../brainglobe-segmentation/index.html">brainglobe-segmentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-segmentation/user-guide/index.html">Prerequisites</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../brainglobe-segmentation/user-guide/analysing-external-segmentation.html">Analysing segmentation from other napari plugins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../brainglobe-workflows/index.html">brainglobe-workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/index.html"><code class="docutils literal notranslate"><span class="pre">brainmapper</span></code> command line tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/data-requirements.html">Data requirements</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/cli.html">Command line interface</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/candidate-detection.html">Cell candidate detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/classification.html">Cell candidate classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../brainreg/user-guide/parameters.html">Registration parameters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/visualisation.html">Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/output-files.html">Output files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../brainglobe-workflows/brainmapper/error-messages.html">Debugging common error messages</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../user-guide/training/index.html">Retraining the pre-trained network</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user-guide/training/using-supplied-data.html">Using supplied training data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../tutorials/brainmapper/index.html">Whole brain cell detection and registration with the <code class="docutils literal notranslate"><span class="pre">brainmapper</span></code> command line tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/brainmapper/setting-up.html">Setting up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/brainmapper/running-brainmapper.html">Running <code class="docutils literal notranslate"><span class="pre">brainmapper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/brainmapper/visualising-the-results.html">Visualising the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/brainmapper/exploring-the-numerical-results.html">Exploring the numerical results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../tutorials/brainmapper/visualising-your-data-in-brainrender.html">Visualising your data in brainrender</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../brainrender/index.html">brainrender</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../brainrender/installation.html">Installing brainrender</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../brainrender/usage/index.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../brainrender/usage/scene.html">Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../brainrender/usage/actors.html">Actors</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../brainrender/usage/using-your-data/index.html">Using your own data in brainrender</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../brainrender/usage/using-your-data/registering-data.html">Registering data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../brainrender/usage/using-notebooks.html">Using Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../brainrender/usage/videos-animations-and-exporting-to-html.html">Videos, animations and exporting to html</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../brainglobe-heatmap/index.html">brainglobe-heatmap</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">cellfinder</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user-guide/napari-plugin/index.html">cellfinder napari plugin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/napari-plugin/cell-detection.html">Cell detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/napari-plugin/training-the-network.html">Retraining the network for new data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/napari-plugin/training-data-generation.html">Generating data to retrain the cellfinder classification network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/napari-plugin/all-cell-detection-parameters.html">All cell detection parameters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/cellfinder-core.html">cellfinder.core API</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user-guide/training/index.html">Retraining the pre-trained network</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user-guide/training/using-supplied-data.html">Using supplied training data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user-guide/cellfinder-download.html">Downloading the pre-trained model in advance</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Troubleshooting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speed-up.html">Speeding up cellfinder</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Debugging common error messages</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../morphapi/index.html">morphapi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../morphapi/usage/downloading-data.html">Downloading data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../morphapi/usage/rendering-data.html">Rendering data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">cellfinder</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Troubleshooting</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Debugging common error messages</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="debugging-common-error-messages">
+<h1>Debugging common error messages<a class="headerlink" href="#debugging-common-error-messages" title="Link to this heading">#</a></h1>
+<section id="error-messages">
+<h2>Error messages<a class="headerlink" href="#error-messages" title="Link to this heading">#</a></h2>
+<section id="info-tensorflow-error-reported-to-coordinator-failed-to-get-convolution-algorithm">
+<h3>INFO:tensorflow:Error reported to Coordinator: Failed to get convolution algorithm<a class="headerlink" href="#info-tensorflow-error-reported-to-coordinator-failed-to-get-convolution-algorithm" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:global_step/sec:<span class="w"> </span><span class="m">0</span>
+<span class="m">2019</span>-05-17<span class="w"> </span><span class="m">13</span>:04:53.550306:<span class="w"> </span>E<span class="w"> </span>tensorflow/stream_executor/cuda/cuda_dnn.cc:334<span class="o">]</span><span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>create<span class="w"> </span>cudnn<span class="w"> </span>handle:<span class="w"> </span>CUDNN_STATUS_INTERNAL_ERROR
+<span class="m">2019</span>-05-17<span class="w"> </span><span class="m">13</span>:04:53.565467:<span class="w"> </span>E<span class="w"> </span>tensorflow/stream_executor/cuda/cuda_dnn.cc:334<span class="o">]</span><span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>create<span class="w"> </span>cudnn<span class="w"> </span>handle:<span class="w"> </span>CUDNN_STATUS_INTERNAL_ERROR
+INFO:tensorflow:Error<span class="w"> </span>reported<span class="w"> </span>to<span class="w"> </span>Coordinator:<span class="w"> </span>Failed<span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>convolution<span class="w"> </span>algorithm.<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>probably<span class="w"> </span>because<span class="w"> </span>cuDNN<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>initialize,<span class="w"> </span>so<span class="w"> </span>try<span class="w"> </span>looking<span class="w"> </span>to<span class="w"> </span>see<span class="w"> </span><span class="k">if</span><span class="w"> </span>a<span class="w"> </span>warning<span class="w"> </span>log<span class="w"> </span>message<span class="w"> </span>was<span class="w"> </span>printed<span class="w"> </span>above.
+</pre></div>
+</div>
+<p>If you see an error like this, it’s likely to be one of two things, either your GPU memory is full, or an issue with
+your CUDA and cuDNN version.</p>
+<p>Your GPU memory may be full if it is still being used by another process. To test this, run <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code>, and you will
+see something like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.56       Driver Version: 418.56       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  TITAN RTX           On   | 00000000:2D:00.0  On |                  N/A |
+| 41%   38C    P2    55W / 280W |  23408MiB / 24187MiB |      4%      Default |
++-------------------------------+----------------------+----------------------+
+</pre></div>
+</div>
+<p>The bit to look for is the memory use (<code class="docutils literal notranslate"><span class="pre">23408MiB</span> <span class="pre">/</span> <span class="pre">24187MiB</span></code>), is this is nearly full (like the example) then
+find the culprit:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0     37793      C   ...miniconda3/envs/cellfinder/bin/python 23408MiB   |
++-----------------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>In this case, a previous run of cellfinder hasn’t completed. Either wait for it to run, or cancel it with CTRL+C
+(in the terminal).</p>
+<p>Alternatively, your version of CUDA and cuDNN may be not compatible with TensorFlow. You can update them by
+following the instructions <a class="reference internal" href="../../setting-up/gpu.html"><span class="doc std std-doc">here</span></a>.</p>
+</section>
+<section id="importerror-dll-load-failed-the-specified-module-could-not-be-found">
+<h3>ImportError: DLL load failed: The specified module could not be found.<a class="headerlink" href="#importerror-dll-load-failed-the-specified-module-could-not-be-found" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ImportError:<span class="w"> </span>DLL<span class="w"> </span>load<span class="w"> </span>failed:<span class="w"> </span>The<span class="w"> </span>specified<span class="w"> </span>module<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>found.
+</pre></div>
+</div>
+<p>If this occurs on Windows, it is likely that you need to install “Microsoft Visual C++ Redistributable for Visual
+Studio 2015, 2017 and 2019”, available from Microsoft’s website
+<a class="reference external" href="https://learn.microsoft.com/en-GB/cpp/windows/latest-supported-vc-redist?view=msvc-170">here</a>.</p>
+</section>
+</section>
+<section id="things-that-look-like-errors-but-arent">
+<h2>Things that look like errors, but aren’t:<a class="headerlink" href="#things-that-look-like-errors-but-arent" title="Link to this heading">#</a></h2>
+<p>Most things that are actually errors will interrupt cellfinder, and the program won’t run. Other things will get
+logged with an <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> or a <code class="docutils literal notranslate"><span class="pre">WARNING</span></code> flag and will get printed to the console in addition to the log file.</p>
+<p>A number of third party modules may raise their own errors. As long as you understand what they mean, they can
+usually be safely ignored.</p>
+<section id="cant-find-opencv">
+<h3>Can’t find openCV<a class="headerlink" href="#cant-find-opencv" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CRITICAL</span><span class="p">:</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">Optional</span> <span class="n">Python</span> <span class="n">module</span> <span class="n">cv2</span> <span class="ow">not</span> <span class="n">found</span><span class="p">,</span> <span class="n">please</span> <span class="n">install</span> <span class="n">cv2</span> <span class="ow">and</span> <span class="n">retry</span> <span class="k">if</span> <span class="n">the</span> <span class="n">application</span> <span class="n">fails</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Tensorflow thinks this is critical, it’s not.</p>
+</section>
+<section id="cpu-instruction-sets">
+<h3>CPU instruction sets<a class="headerlink" href="#cpu-instruction-sets" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensorflow</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">platform</span><span class="o">/</span><span class="n">cpu_feature_guard</span><span class="o">.</span><span class="n">cc</span><span class="p">:</span><span class="mi">141</span><span class="p">]</span> <span class="n">Your</span> <span class="n">CPU</span> <span class="n">supports</span> <span class="n">instructions</span> <span class="n">that</span> <span class="n">this</span> <span class="n">TensorFlow</span> <span class="n">binary</span> 
+<span class="n">was</span> <span class="ow">not</span> <span class="n">compiled</span> <span class="n">to</span> <span class="n">use</span><span class="p">:</span> <span class="n">SSE4</span><span class="mf">.1</span> <span class="n">SSE4</span><span class="mf">.2</span> <span class="n">AVX</span> <span class="n">AVX2</span> <span class="n">FMA</span>
+</pre></div>
+</div>
+<p>Unless you built tensorflow from source, something like this will come up. It’ll still work fine</p>
+</section>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="speed-up.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Speeding up cellfinder</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../morphapi/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">morphapi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-messages">Error messages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info-tensorflow-error-reported-to-coordinator-failed-to-get-convolution-algorithm">INFO:tensorflow:Error reported to Coordinator: Failed to get convolution algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importerror-dll-load-failed-the-specified-module-could-not-be-found">ImportError: DLL load failed: The specified module could not be found.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#things-that-look-like-errors-but-arent">Things that look like errors, but aren’t:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cant-find-opencv">Can’t find openCV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-instruction-sets">CPU instruction sets</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="sphinx-version">
+Created using <a href="https://sphinx-doc.org/">Sphinx</a> 8.1.3.
+<br/>
+</p>
+<p class="theme-version">
+Built with the
+<a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
+0.16.1.
+</p></div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><div class="things-in-a-row">
+</div></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

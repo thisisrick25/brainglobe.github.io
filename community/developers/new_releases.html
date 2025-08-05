@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Publishing new releases &#8212; BrainGlobe</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=1227d6e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'community/developers/new_releases';</script>
+    <link rel="canonical" href="https://brainglobe.info/community/developers/new_releases.html" />
+    <link rel="icon" href="../../_static/brainglobe.png"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Specific Repository Developer Documentation" href="specific_repos.html" />
+    <link rel="prev" title="Testing" href="testing.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/brainglobe.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/brainglobe.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">BrainGlobe</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../documentation/index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Developer’s guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro_to_codebase.html">Introduction to the BrainGlobe codebase for developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tooling.html">Tooling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Publishing new releases</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="specific_repos.html">Specific Repository Developer Documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-atlasapi/index.html">brainglobe-atlasapi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-meta/index.html">brainglobe-meta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-utils/index.html">brainglobe-utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/brainglobe-workflows/index.html">brainglobe-workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repositories/cellfinder-core/index.html">cellfinder.core</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://github.com/brainglobe/.github/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../roadmaps/index.html">Roadmaps</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../roadmaps/may-2024.html">May 2024</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../roadmaps/november-2023.html">November 2023</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../releases/index.html">Releases</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../releases/v1/index.html">BrainGlobe version 1 overview</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/v1/brainreg.html">Version 1: changes to registration and segmentation tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/v1/cellfinder-migration.html">Version 1: Cellfinder migration and <code class="docutils literal notranslate"><span class="pre">brainglobe-workflows</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/v1/cellfinder-core-and-plugin-merge.html">Version 1: changes to the cellfinder backend and plugin</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../courses/index.html">Courses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../courses/materials/whole-brain-analysis/index.html">Whole brain microscopy analysis with BrainGlobe and napari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../courses/scheduled/oct-2024/index.html">October 7th-8th 2024</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../courses/scheduled/dec-2023/index.html">December 6th 2023</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../external-tools.html">Software built by the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://gin.g-node.org/BrainGlobe">Sample datasets</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Community</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Developer’s guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Publishing new releases</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="publishing-new-releases">
+<h1>Publishing new releases<a class="headerlink" href="#publishing-new-releases" title="Link to this heading">#</a></h1>
+<p>BrainGlobe packages hosted on GitHub have CI workflows setup that are used to automatically upload and publish new version releases when they are made available.
+This is the preferred method for publishing new versions to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> (and where appropriate, the linked <code class="docutils literal notranslate"><span class="pre">conda</span></code> feedstocks) - avoid manual uploads where possible.</p>
+<p>Maintainers can trigger a new release by pushing a new tag, in the format <code class="docutils literal notranslate"><span class="pre">vX.Y.Z</span></code>, to the main branch of a package repository.
+The <code class="docutils literal notranslate"><span class="pre">v</span></code> prefix <strong>is necessary</strong> as the workflow will only attempt to upload to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> if the tag matches the format previously provided.
+The <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">Z</span></code> values should be integers corresponding to the new version number.</p>
+<section id="coordinating-releases-with-the-documentation-and-the-metapackage">
+<h2>Coordinating releases with the documentation and the metapackage<a class="headerlink" href="#coordinating-releases-with-the-documentation-and-the-metapackage" title="Link to this heading">#</a></h2>
+<p>Releases will be made ad-hoc as bug-fixes and new features become available.
+When releasing a new version of a BrainGlobe repository, we also need to update the website, the metapackage, and any other tools that depend on that repository accordingly.
+This means we will typically create at least three dependent PRs;</p>
+<ul class="simple">
+<li><p>One in the repository itself (containing the bugfix or new feature we’d like to release)</p></li>
+<li><p>One in the <a class="reference external" href="https://github.com/brainglobe/brainglobe.github.io">website repository</a> (to update documentation if necessary)</p></li>
+<li><p>One for each repository that depends on the updated tool, to bump the dependency version</p></li>
+<li><p>One in the <a class="reference external" href="https://github.com/brainglobe/brainglobe-meta">metapackage repository</a>, which pins the new versions of all affected tools at once</p></li>
+</ul>
+<p>We should cross-link the latter to the website update, and release all affected packages to PyPI (and conda if appropriate) once they are all merged into <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+Ideally, updates and releases should be made in an order that <a class="reference internal" href="repositories/brainglobe-meta/index.html#id1"><span class="std std-ref">follows the dependency tree</span></a> - starting with our lower level tools, than their dependents, then dependents of those dependents, and so on.
+The meta-package itself will always be the last by this convention.</p>
+<section id="example-highlighting-pinning-from-below">
+<h3>Example, highlighting pinning from below<a class="headerlink" href="#example-highlighting-pinning-from-below" title="Link to this heading">#</a></h3>
+<p>It should be noted that our convention is to pin all our dependencies from below.
+This allows us to minimise the number of new releases we have to make when updating one of our tools that several others depend on.
+As such, when a package has a new release, only tools that depend on that package <em>that rely on the new features / structure</em> need to receive their own version bump (and thus a PR in the chain described above).</p>
+<p>For example, suppose we have package <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> at version <code class="docutils literal notranslate"><span class="pre">v1.0.0</span></code> which provides three features; <code class="docutils literal notranslate"><span class="pre">F1.foo</span></code>, <code class="docutils literal notranslate"><span class="pre">F1.bar</span></code>, and <code class="docutils literal notranslate"><span class="pre">F2</span></code>.
+Then we have packages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-B</span></code>, version <code class="docutils literal notranslate"><span class="pre">v1.2.0</span></code>, that uses <code class="docutils literal notranslate"><span class="pre">F1.foo</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-C</span></code>, version <code class="docutils literal notranslate"><span class="pre">v1.5.0</span></code>, that uses <code class="docutils literal notranslate"><span class="pre">F1.bar</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-D</span></code>, version <code class="docutils literal notranslate"><span class="pre">v1.7.0</span></code>, that uses <code class="docutils literal notranslate"><span class="pre">F2</span></code>.</p></li>
+</ul>
+<p>Let’s pretend that update <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> to <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> is going to re-write <code class="docutils literal notranslate"><span class="pre">F1.foo</span></code> to be more efficient (but keep the name), move <code class="docutils literal notranslate"><span class="pre">F1.bar</span></code> to <code class="docutils literal notranslate"><span class="pre">F2.bar</span></code>, and not change <code class="docutils literal notranslate"><span class="pre">F2</span></code>.
+In this case, the PR chain would consist of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-B</span></code> needs a new version (say <code class="docutils literal notranslate"><span class="pre">v1.2.1</span></code>), with the <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> dependency pinned to <code class="docutils literal notranslate"><span class="pre">&gt;=1.1.0</span></code>. This is so that the new <code class="docutils literal notranslate"><span class="pre">F1.foo</span></code> is used when <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> is fetched by pip/conda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-C</span></code> needs a new version (say <code class="docutils literal notranslate"><span class="pre">v1.6.0</span></code>), with the <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> dependency pinned to <code class="docutils literal notranslate"><span class="pre">&gt;=1.1.0</span></code> too. This is because version <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> of <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> is incompatible with <code class="docutils literal notranslate"><span class="pre">v1.0.0</span></code>. If we don’t release a new <code class="docutils literal notranslate"><span class="pre">BG-C</span></code> version with this change, a user could <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">BG-C</span></code>, have <code class="docutils literal notranslate"><span class="pre">BG-A</span></code> <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> fetched as part of the dependency resolution, then would encounter an error whenever they tried to use <code class="docutils literal notranslate"><span class="pre">BG-C</span></code> since <code class="docutils literal notranslate"><span class="pre">F1.bar</span></code> would be unavailable (it’s now <code class="docutils literal notranslate"><span class="pre">F2.bar</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-D</span></code> doesn’t need any new releases, since <code class="docutils literal notranslate"><span class="pre">F2</span></code> has not been affected by the <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> update to <code class="docutils literal notranslate"><span class="pre">BG-A</span></code>.</p></li>
+<li><p>The metapackage then needs a new version which pins:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-A</span> <span class="pre">&gt;=</span> <span class="pre">v1.1.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-B</span> <span class="pre">&gt;=</span> <span class="pre">v1.2.1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-C</span> <span class="pre">&gt;=</span> <span class="pre">v1.6.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BG-D</span> <span class="pre">&gt;=</span> <span class="pre">v1.7.0</span></code> (no change)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="triggering-a-new-release">
+<h2>Triggering a new release<a class="headerlink" href="#triggering-a-new-release" title="Link to this heading">#</a></h2>
+<p>The steps for triggering a new release are:</p>
+<ol class="arabic simple">
+<li><p>Head to the “releases” UI on GitHub for the package you want to release a new version for, and select “draft a new release”.</p></li>
+<li><p>In the “choose a tag” box, opt to create a new tag in the format described above. Ensure that the target is <code class="docutils literal notranslate"><span class="pre">main</span></code> (or the desired commit on <code class="docutils literal notranslate"><span class="pre">main</span></code> if the current <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> is not the desired release state).</p></li>
+<li><p>Choose the release title. Typically, this is the same as the tag that will be created.</p></li>
+<li><p>In the “write” box, you should have the option to select the “previous tag”. Choose the tag of the previous release, then select “generate release notes”.</p></li>
+<li><p>Check the “set as latest release” box.</p></li>
+<li><p>Then hit “publish release”.</p></li>
+</ol>
+<p>This will trigger a tag-push event to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, which will set the <a class="reference internal" href="#workflow-for-publishing-new-releases"><span class="std std-ref">deployment workflow</span></a> in motion.
+You can now relax whilst the workflow uploads the new package version to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>; however you will need to look out for <a class="reference internal" href="#conda-forge-feedstocks"><span class="std std-ref">conda-forge feedstock updates</span></a> in the next couple of days, or preempt this by making your own.
+See the section on feedstocks for more information.</p>
+<section id="on-the-command-line">
+<h3>On the command line<a class="headerlink" href="#on-the-command-line" title="Link to this heading">#</a></h3>
+<p>If you have an up-to-date clone of the package repository, you can create a release tag on the command line with</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>vX.Y.Z<span class="w"> </span>
+</pre></div>
+</div>
+<p>or one of</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>vX.Y.Z
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>vX.Y.Z<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Tag annotation message&quot;</span>
+</pre></div>
+</div>
+<p>if you want to annotate the tag; which is useful for tagging single-commit hotfixes or patches that might come after a release.</p>
+<p>Once you have created the tag, you can <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--tags</span></code> back to the main repository to trigger the release workflow.
+<strong>However</strong> you still need to create release notes using the GitHub UI as described in <a class="reference internal" href="#triggering-a-new-release"><span class="std std-ref">the section above</span></a>.
+You will need to select the tag you just pushed, rather than creating a new tag, when you start drafting the release notes.</p>
+</section>
+<section id="failed-workflows">
+<h3>Failed workflows<a class="headerlink" href="#failed-workflows" title="Link to this heading">#</a></h3>
+<p>In the event that the release workflows fails after publishing a release, you will need to:</p>
+<ul class="simple">
+<li><p>Delete the tag from the repository from the GitHub tags UI</p></li>
+<li><p>Delete the release notes and release from the GitHub releases UI</p></li>
+<li><p>Debug the build failure and the commits with the fix are merged into <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p>Begin the process over again.</p></li>
+</ul>
+</section>
+<section id="conda-forge-feedstocks">
+<h3><code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> feedstocks<a class="headerlink" href="#conda-forge-feedstocks" title="Link to this heading">#</a></h3>
+<p>A number of BrainGlobe packages are also available through <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>, providing an alternative installation method to <code class="docutils literal notranslate"><span class="pre">pip</span></code>.
+Each package available in this way has a feedstock repository, usually at the GitHub repository:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda-forge/&lt;package-name&gt;-feedstock
+</pre></div>
+</div>
+<p>These feedstocks are linked to their <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> counterparts - when a new version comes available on <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>, the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> admin bot should open a PR in the feedstock repository which will update the version of the package available through <code class="docutils literal notranslate"><span class="pre">conda</span></code>.
+These PRs must be approved by one of the feedstock maintainers before they are merged in.</p>
+<ul class="simple">
+<li><p>Feedstock maintainers and package maintainers may be different</p></li>
+<li><p>New versions of packages will <strong>NOT</strong> be available through <code class="docutils literal notranslate"><span class="pre">conda</span></code> until these PRs are merged in.</p></li>
+</ul>
+<p>If the new version changes are extensive or non-trivial; a manual update to the <code class="docutils literal notranslate"><span class="pre">meta.yaml</span></code> “recipe” file might be needed, as the admin bot is unable to resolve complex edits.
+Examples of such changes are; changing package dependencies, introducing new submodules, and/or editing command-line entry-points.
+You will need to use the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> CI to debug the builds when manually updating in this way.</p>
+</section>
+</section>
+<section id="workflow-for-publishing-new-releases">
+<h2>Workflow for publishing new releases<a class="headerlink" href="#workflow-for-publishing-new-releases" title="Link to this heading">#</a></h2>
+<p>BrainGlobe repositories hosted on GitHub each possess a <code class="docutils literal notranslate"><span class="pre">test_and_deploy.yaml</span></code> workflow.
+The basic functionality of these workflows use the <a class="reference external" href="https://github.com/neuroinformatics-unit/actions">neuroinformatics-unit</a> actions to:</p>
+<ol class="arabic simple">
+<li><p>Lint the source code</p></li>
+<li><p>Check the package manifest</p></li>
+<li><p>Run the package tests</p></li>
+</ol>
+<p>These checks are run against <em>all</em> PRs opened against the repository, and on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch when they are merged in.
+When a tag in the <code class="docutils literal notranslate"><span class="pre">vX.Y.Z</span></code> format is pushed to <code class="docutils literal notranslate"><span class="pre">main</span></code>, these checks are run again and <em>if they are successful</em> the workflow will build the source distribution and upload this to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code>.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="testing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Testing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="specific_repos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Specific Repository Developer Documentation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinating-releases-with-the-documentation-and-the-metapackage">Coordinating releases with the documentation and the metapackage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-highlighting-pinning-from-below">Example, highlighting pinning from below</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triggering-a-new-release">Triggering a new release</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-the-command-line">On the command line</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failed-workflows">Failed workflows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-forge-feedstocks"><code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> feedstocks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-for-publishing-new-releases">Workflow for publishing new releases</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="sphinx-version">
+Created using <a href="https://sphinx-doc.org/">Sphinx</a> 8.1.3.
+<br/>
+</p>
+<p class="theme-version">
+Built with the
+<a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
+0.16.1.
+</p></div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><div class="things-in-a-row">
+</div></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Adding a new atlas &#8212; BrainGlobe</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=1227d6e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/brainglobe-atlasapi/adding-a-new-atlas';</script>
+    <link rel="canonical" href="https://brainglobe.info/documentation/brainglobe-atlasapi/adding-a-new-atlas.html" />
+    <link rel="icon" href="../../_static/brainglobe.png"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="brainglobe-space" href="../brainglobe-space/index.html" />
+    <link rel="prev" title="Using the files directly" href="usage/using-the-files-directly.html" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />   
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/brainglobe.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/brainglobe.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">BrainGlobe</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/index.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blog/index.html">
+    Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../projects/index.html">
+    Projects
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../blackcap.html">
+    <no title>
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/brainglobe" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/brain_globe" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mastodon.online/@brainglobe" title="Mastodon" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-mastodon fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Mastodon</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://bsky.app/profile/brainglobe.info" title="Bluesky" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-bluesky fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Bluesky</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://brainglobe.zulipchat.com" title="Zulip (Developer chat)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-comments fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Zulip (Developer chat)</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.image.sc/tag/brainglobe" title="image.sc (Help forum)" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-question fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">image.sc (Help forum)</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../setting-up/index.html">Setting up</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setting-up/conda.html">Using conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setting-up/gpu.html">Setting up your GPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setting-up/image-definition.html">Image space definition</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">BrainGlobe Atlas API (brainglobe-atlasapi)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="usage/atlas-details.html">Atlas details</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="usage/python-api.html">Python API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/command-line-interface.html">Command line interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/using-the-files-directly.html">Using the files directly</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Adding a new atlas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../brainglobe-space/index.html">brainglobe-space</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../brainglobe-utils/index.html">brainglobe-utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../brainglobe-utils/transform-widget.html">brainmapper cell transformation widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainglobe-utils/image_io.html">Image IO submodule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainglobe-utils/citation-module.html">Generating Citations for BrainGlobe tools</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../brainreg/index.html">brainreg</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/installation.html">Requirements</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/user-guide/brainreg-napari.html">Napari plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/user-guide/brainreg-cli.html">Command line tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/user-guide/parameters.html">Registration parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/user-guide/checking-orientation.html">Checking orientation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/user-guide/output-files.html">Output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/user-guide/visualisation.html">Visualising brainreg output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../brainreg/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../brainglobe-segmentation/index.html">brainglobe-segmentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../brainglobe-segmentation/user-guide/index.html">Prerequisites</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../brainglobe-segmentation/user-guide/analysing-external-segmentation.html">Analysing segmentation from other napari plugins</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../brainglobe-workflows/index.html">brainglobe-workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../brainglobe-workflows/brainmapper/index.html"><code class="docutils literal notranslate"><span class="pre">brainmapper</span></code> command line tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../brainglobe-workflows/brainmapper/data-requirements.html">Data requirements</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../brainglobe-workflows/brainmapper/cli.html">Command line interface</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../brainglobe-workflows/brainmapper/candidate-detection.html">Cell candidate detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../brainglobe-workflows/brainmapper/classification.html">Cell candidate classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../brainreg/user-guide/parameters.html">Registration parameters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../brainglobe-workflows/brainmapper/visualisation.html">Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../brainglobe-workflows/brainmapper/output-files.html">Output files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../brainglobe-workflows/brainmapper/error-messages.html">Debugging common error messages</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../cellfinder/user-guide/training/index.html">Retraining the pre-trained network</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cellfinder/user-guide/training/using-supplied-data.html">Using supplied training data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../tutorials/brainmapper/index.html">Whole brain cell detection and registration with the <code class="docutils literal notranslate"><span class="pre">brainmapper</span></code> command line tool</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/brainmapper/setting-up.html">Setting up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/brainmapper/running-brainmapper.html">Running <code class="docutils literal notranslate"><span class="pre">brainmapper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/brainmapper/visualising-the-results.html">Visualising the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/brainmapper/exploring-the-numerical-results.html">Exploring the numerical results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/brainmapper/visualising-your-data-in-brainrender.html">Visualising your data in brainrender</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../brainrender/index.html">brainrender</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../brainrender/installation.html">Installing brainrender</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../brainrender/usage/index.html">Usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../brainrender/usage/scene.html">Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../brainrender/usage/actors.html">Actors</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../brainrender/usage/using-your-data/index.html">Using your own data in brainrender</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../brainrender/usage/using-your-data/registering-data.html">Registering data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../brainrender/usage/using-notebooks.html">Using Notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../brainrender/usage/videos-animations-and-exporting-to-html.html">Videos, animations and exporting to html</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../brainglobe-heatmap/index.html">brainglobe-heatmap</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cellfinder/index.html">cellfinder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cellfinder/installation.html">Installation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cellfinder/user-guide/napari-plugin/index.html">cellfinder napari plugin</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/user-guide/napari-plugin/cell-detection.html">Cell detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/user-guide/napari-plugin/training-the-network.html">Retraining the network for new data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/user-guide/napari-plugin/training-data-generation.html">Generating data to retrain the cellfinder classification network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/user-guide/napari-plugin/all-cell-detection-parameters.html">All cell detection parameters</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../cellfinder/user-guide/cellfinder-core.html">cellfinder.core API</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cellfinder/user-guide/training/index.html">Retraining the pre-trained network</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/user-guide/training/using-supplied-data.html">Using supplied training data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../cellfinder/user-guide/cellfinder-download.html">Downloading the pre-trained model in advance</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cellfinder/troubleshooting/index.html">Troubleshooting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/troubleshooting/speed-up.html">Speeding up cellfinder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cellfinder/troubleshooting/error-messages.html">Debugging common error messages</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../morphapi/index.html">morphapi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../morphapi/usage/downloading-data.html">Downloading data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../morphapi/usage/rendering-data.html">Rendering data</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">BrainGlobe Atlas API (brainglobe-atlasapi)</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Adding a new atlas</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="adding-a-new-atlas">
+<h1>Adding a new atlas<a class="headerlink" href="#adding-a-new-atlas" title="Link to this heading">#</a></h1>
+<section id="how-are-brainglobe-atlases-distributed">
+<h2>How are BrainGlobe atlases distributed?<a class="headerlink" href="#how-are-brainglobe-atlases-distributed" title="Link to this heading">#</a></h2>
+<p>BrainGlobe atlases are downloaded locally to the user’s machine whenever they try to use an atlas that has not yet been downloaded.
+By default, they will end up in the <code class="docutils literal notranslate"><span class="pre">~/.brainglobe</span></code> folder, unless differently specified in the <code class="docutils literal notranslate"><span class="pre">brainglobe-atlasapi</span></code> configuration.</p>
+<p>The BrainGlobeAtlas class fetches those atlases from a dedicated GIN repository
+(<a class="reference external" href="https://gin.g-node.org/brainglobe/atlases">https://gin.g-node.org/brainglobe/atlases</a>). GIN repos are very similar
+to GitHub repos, but support storage of large datasets, using git-annex.
+Only members of the BrainGlobe initiative can upload new atlases to the GIN repo,
+and this is essential to ensure the interoperability of all atlases that are part of the BrainGlobe suite.
+Still, we want to keep the process open to external contribution,
+and we tried to streamline the process for people who want to expand the list of BrainGlobe supported atlases.
+Here’s some information on how the process works, and how you can contribute a new atlas to the initiative:</p>
+<p>The repository of atlases is automatically updated by scripts that reformat atlas data, create a bundled atlas archive
+and upload them. This process will be run every time a new atlas is added or an old atlas is updated. Each atlas is
+generated in a separate script, so if you want to contribute with a new atlas:</p>
+<ul class="simple">
+<li><p>Fork <a class="reference external" href="https://github.com/brainglobe/brainglobe-atlasapi">github.com/brainglobe/brainglobe-atlasapi</a></p></li>
+<li><p>Create an atlas generation script in the <code class="docutils literal notranslate"><span class="pre">atlas_generation/atlas_scripts</span></code> directory (see below)</p></li>
+<li><p>Submit a pull request back to the original repository.</p></li>
+</ul>
+<p>If you are new to GitHub, or you have any questions about writing your script, feel free to reach out via a
+<a class="reference external" href="https://github.com/brainglobe/brainglobe-atlasapi/issues">GitHub issue</a> or by starting a discussion using the
+<a class="reference external" href="https://forum.image.sc/tag/brainglobe">BrainGlobe tag over at the image.sc forum</a> and we’ll be very happy to provide
+you with all the assistance you need to contribute to the project!</p>
+</section>
+<section id="what-data-do-you-need-to-contribute-an-atlas-to-the-brainglobe-initiative">
+<h2>What data do you need to contribute an atlas to the BrainGlobe Initiative?<a class="headerlink" href="#what-data-do-you-need-to-contribute-an-atlas-to-the-brainglobe-initiative" title="Link to this heading">#</a></h2>
+<p>To contribute your favourite atlas in a BrainGlobe-compatible format, these are the fundamental ingredients you’ll
+need to have before starting:</p>
+<ul class="simple">
+<li><p>Information to credit the atlas: a publication, if available, and a website of the atlas, if available.</p></li>
+<li><p>A reference 3D stack in your favorite format, as long as you can load it to a numpy array. This will be the reference
+stack, used to represent the anatomy of the brain. If you have more than one reference brain (e.g., multiple transgenic
+lines that people can use for registrations), don’t worry: just choose the most important one, and the others can be
+distributed via BrainGlobe as well.</p></li>
+<li><p>An annotation 3D stack that contains 0s in all non-annotated voxels, and integer numbers that correspond to the ids
+of all the different regions. IDs should refer to the finest level of your region hierarchy. For example, in a brain
+where the telecephalon has ID 1, the cortex ID 2, and the visual cortex ID 3, a voxel in the visual cortex should just
+have 3. The BrainGlobe Atlas API will know how to take care of pooling all voxels that belong to the cortex using the
+annotation and the region hierarchy information (more on that later).</p></li>
+<li><p>A description of all the structures of the brain and their hierarchy. This represented in BrainGlobe with a list of
+dictionaries where each dictionary describes a region with the following keys:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">STRUCTURE_TEMPLATE</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;acronym&quot;</span><span class="p">:</span> <span class="s2">&quot;VIS&quot;</span><span class="p">,</span>  <span class="c1"># shortened name of the region</span>
+   <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="c1"># region id</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;visual cortex&quot;</span><span class="p">,</span>  <span class="c1"># full region name</span>
+   <span class="s2">&quot;structure_id_path&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>  <span class="c1"># path to the structure in the structures hierarchy, up to current id</span>
+   <span class="s2">&quot;rgb_triplet&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">],</span>  <span class="c1"># default color for visualizing the region, feel free to leave white or randomize it</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">structure_id_path</span></code> is the fundamental key argument for <code class="docutils literal notranslate"><span class="pre">brainglobe-atlasapi</span></code> to understand the hierarchy of your regions.
+Going back to our example above, if telencephalon is 1, cortex 2, and visual cortex 3, <code class="docutils literal notranslate"><span class="pre">structure_id_path</span></code> for the
+cortex region will be [1, 2], and for the visual cortex region will be [1, 2, 3]. you don’t necessarily need a fixed
+number of levels in your hierarchy. You should just make sure that there is one and only one root region (i.e., a region
+with <code class="docutils literal notranslate"><span class="pre">structure_id_path</span></code> of length 1). If your atlas does not have a multilevel hierarchy, just create a root region
+that all other regions are children of. How to generate the region hierarchy is up to you; just make sure you have a
+way of generating this list of dictionaries in python when you’ll start creating the atlas.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Do not use 0 (zero) as the id of a structure, because the annotation stack will contain zeros where no structure is defined!</p>
+</div>
+</section>
+<section id="how-to-generate-an-atlas-programmatically">
+<h2>How to generate an atlas programmatically?<a class="headerlink" href="#how-to-generate-an-atlas-programmatically" title="Link to this heading">#</a></h2>
+<p>Each BrainGlobe atlas is generated by its custom atlas script, written in Python. Reusable functionality for atlas generation is <a class="reference external" href="https://github.com/brainglobe/brainglobe-atlasapi/tree/main/brainglobe_atlasapi/atlas_generation/">available from BrainGlobe</a>, such as the <code class="docutils literal notranslate"><span class="pre">create_region_mesh</span></code> function. To use this functionality in your Python virtual (<code class="docutils literal notranslate"><span class="pre">conda</span></code>) environment, install <code class="docutils literal notranslate"><span class="pre">brainglobe-atlasapi</span></code> with optional dependencies <code class="docutils literal notranslate"><span class="pre">[dev,</span> <span class="pre">atlasgen]</span></code>.</p>
+<section id="atlas-scripts">
+<h3>Atlas scripts<a class="headerlink" href="#atlas-scripts" title="Link to this heading">#</a></h3>
+<p><strong>Each atlas to be generated has a dedicated atlas script. This has two main functions:</strong> </p>
+<ol class="arabic simple">
+<li><p>To set important atlas metadata (e.g., name, resolution…) and </p></li>
+<li><p>To load the atlas data (e.g. reference image).</p></li>
+</ol>
+<p><strong>The metadata that needs to be specified in the atlas script is:</strong></p>
+<ul class="simple">
+<li><p>RES_UM: resolution of the atlas in micrometers (voxel spacing)</p></li>
+<li><p>ATLAS_NAME: the name</p></li>
+<li><p>SPECIES: e.g. “Mus musculus”</p></li>
+<li><p>ATLAS_LINK: a link to a website describing the atlas or any other relevant online resource</p></li>
+<li><p>CITATION: the details of a published paper/preprint in which the atlas was first described</p></li>
+<li><p>ATLAS_PACKAGER: contact (name / email) of the person who packaged the atlas in BrainGlobe</p></li>
+<li><p>ORIENTATION: a string specifying the orientation in brainglobe-space format</p></li>
+<li><p>__version__: the version number of the atlas: when atlases get updated/modified new versions are released.</p></li>
+<li><p>root structure id: ID of the root (base) brain region in the hierarchy of brain regions.</p></li>
+</ul>
+<p>This metadata is used to provide information about the atlas (e.g., which species is it about), to give credit to the
+original creators of the atlas data and to provide data used by other BrainGlobe tools (e.g., the atlas orientation).</p>
+<p><strong>In addition to laying out the metadata, atlas scripts are being used to load (or download) the actual atlas data:</strong></p>
+<ul class="simple">
+<li><p>Template image volume: a 3D image with the atlas’ template</p></li>
+<li><p>Annotated image volume: a 3D image where each voxel is annotated with the ID of the atlas brain region at that point</p></li>
+<li><p>hemispheres stack (optional): a 3D image where each voxel is annotated with the ID of the hemisphere it belongs to</p></li>
+<li><p>Structures list: a list of brain regions (structures) names</p></li>
+<li><p>Meshes dict: a dictionary with entries of the type structure-&gt;file path specifying the path to the .obj mesh file
+of each brain region</p></li>
+</ul>
+</section>
+<section id="atlas-generation">
+<h3>Atlas generation<a class="headerlink" href="#atlas-generation" title="Link to this heading">#</a></h3>
+<p>Once an atlas script has been written which sets out all the necessary metadata and loads all the files required,
+code provided by BrainGlobe’s atlas generation submodule can be used to format the data as needed by the BrainGlobe
+AtlasAPI. The atlas generation submodule provides one convenient function <code class="docutils literal notranslate"><span class="pre">wrapup_atlas_from_data</span></code>  which takes all the metadata and data
+from above and creates the data structures required. These data structures include .tiff files with the various images,
+csv files with the structures metadata information, a README file laying out the atlas content, etc. The same function
+creates a compressed folder which can be uploaded to GIN for distribution (see above).</p>
+</section>
+<section id="extracting-meshes">
+<h3>Extracting meshes<a class="headerlink" href="#extracting-meshes" title="Link to this heading">#</a></h3>
+<p>While most atlases will have a set of 3D images that can be used as annotated and template stacks, not all atlases will have mesh (.obj) files for each brain region in the atlas.
+However, regions’ meshes are used frequently by BrainGlobe tools, especially in <code class="docutils literal notranslate"><span class="pre">brainrender</span></code> for visualizing anatomical data in 3D.
+For this reason, the atlas generation code from BrainGlobe provides functionality that can be used to generate such mesh files.
+A mask image is created which only contains the annotation for the brain region of interest, and a marching cubes algorithm is used to identify the surface of the region; finally, a mesh is created from the output of the marching cubes algorithm, and the results are saved to a .obj file.
+Repeating the process for each region in the atlas, it is possible to easily create all the necessary meshes.</p>
+</section>
+<section id="how-can-i-be-sure-i-get-credited-for-the-atlas-i-contributed">
+<h3>How can I be sure I get credited for the atlas I contributed?<a class="headerlink" href="#how-can-i-be-sure-i-get-credited-for-the-atlas-i-contributed" title="Link to this heading">#</a></h3>
+<p>Included with the atlas metadata, which is specified during atlas creation (see above), is a link to any online resource describing the atlas and to a publication associated with the atlas.</p>
+<p>This ensures that information about the original creators of the atlas data accompanies the atlas data at all time, so that credit can easily be given to the atlas creators.</p>
+<p>Sometimes, the atlas creator and the person contributing the atlas to BrainGlobe (i.e., going through the atlas generation process laid out here) may not be the same.
+The <code class="docutils literal notranslate"><span class="pre">ATLAS_PACKAGER</span></code> argument in the metadata allow specifying the name and contact of the person who curated the BrainGlobe atlas creation.</p>
+</section>
+<section id="inspecting-results">
+<h3>Inspecting results<a class="headerlink" href="#inspecting-results" title="Link to this heading">#</a></h3>
+<p>To check if everything went smoothly,
+you can just go to the folder with the atlas content
+(named <code class="docutils literal notranslate"><span class="pre">atlasname_resolutionum</span></code> in the directory you were generating the atlas in) and check out its content. </p>
+<p>For the metadata, you can just open the json file and inspect it.</p>
+<p>To inspect the reference.tiff file and the annotation.tiff file, you can just drag and drop them in napari (to install napari, see <a class="reference external" href="https://napari.org/stable/tutorials/fundamentals/installation">here</a>), and they will open as an image layer, and a label layer, respectively.
+You know the orientation is correct if you are looking at upright (dorsal top, ventral bottom) frontal sections, and when you scroll the slider to inspect sections with a higher index, you are moving from anterior to posterior.</p>
+<p>Once an atlas is created with BrainGlobe’s atlas generation tools, it can be used with most software from the BrainGlobe software suite.
+These include <a class="reference internal" href="../brainrender/index.html"><span class="doc std std-doc">brainrender</span></a> and <a class="reference internal" href="../../tutorials/visualise-atlas-napari.html"><span class="doc std std-doc">brainrender-napari</span></a> which provide a convenient way to visually inspect the generated atlas meshes.</p>
+<p>For example, you can visualise various parts of the Max Planck Zebrafish Brain Atlas next to each other by running the script below. You can do the same with your own newly-packaged atlas (or any other BrainGlobe atlas) by replacing the atlas name, the name of the additional reference, and the acronym of the structure you’re interested in, as explained in the comments below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">brainrender_napari.napari_atlas_representation</span><span class="w"> </span><span class="kn">import</span> <span class="n">NapariAtlasRepresentation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">brainglobe_atlasapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrainGlobeAtlas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">napari</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">viewer</span> <span class="o">=</span> <span class="n">napari</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
+    <span class="n">viewer</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">ndisplay</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="c1"># replace &quot;mpin_zfish_1um&quot; with atlas of interest below</span>
+    <span class="n">napari_atlas</span> <span class="o">=</span> <span class="n">NapariAtlasRepresentation</span><span class="p">(</span><span class="n">BrainGlobeAtlas</span><span class="p">(</span><span class="s2">&quot;mpin_zfish_1um&quot;</span><span class="p">),</span> <span class="n">viewer</span><span class="p">)</span>
+    <span class="n">napari_atlas</span><span class="o">.</span><span class="n">add_to_viewer</span><span class="p">()</span>
+    
+    <span class="c1"># replace &quot;GADb1&quot; with name of additional reference for your atlas (if it has any)</span>
+    <span class="n">napari_atlas</span><span class="o">.</span><span class="n">add_additional_reference</span><span class="p">(</span><span class="s2">&quot;GADb1&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># replace &quot;root&quot; with acronym of structure of interest below</span>
+    <span class="n">napari_atlas</span><span class="o">.</span><span class="n">add_structure_to_viewer</span><span class="p">(</span><span class="s2">&quot;&lt;structure_id&gt;&quot;</span><span class="p">)</span>
+    <span class="n">napari</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="uploading-the-atlas">
+<h2>Uploading the atlas<a class="headerlink" href="#uploading-the-atlas" title="Link to this heading">#</a></h2>
+<p>After the pull request is merged, one of the BrainGlobe core developers will run the script and upload the packaged atlas (<code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> archive) to <a class="reference external" href="https://gin.g-node.org/BrainGlobe/atlases">the GIN repository</a>.
+The <a class="reference external" href="https://gin.g-node.org/BrainGlobe/atlases/src/master/last_versions.conf"><code class="docutils literal notranslate"><span class="pre">latest_versions.conf</span></code></a> file will also be updated to include the new atlas. At this point, the atlas will be available for use in the API.</p>
+</section>
+<section id="updating-an-existing-atlas">
+<h2>Updating an existing atlas<a class="headerlink" href="#updating-an-existing-atlas" title="Link to this heading">#</a></h2>
+<p>To update an existing atlas, a pull request must be raised to change the existing script.
+Once this pull request is merged, the new atlas will be generated and uploaded to the GIN repository as normal.
+The <a class="reference external" href="https://gin.g-node.org/BrainGlobe/atlases/src/master/last_versions.conf"><code class="docutils literal notranslate"><span class="pre">latest_versions.conf</span></code></a> can then be updated to reflect the latest version.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="usage/using-the-files-directly.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using the files directly</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../brainglobe-space/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">brainglobe-space</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-are-brainglobe-atlases-distributed">How are BrainGlobe atlases distributed?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-data-do-you-need-to-contribute-an-atlas-to-the-brainglobe-initiative">What data do you need to contribute an atlas to the BrainGlobe Initiative?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-generate-an-atlas-programmatically">How to generate an atlas programmatically?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atlas-scripts">Atlas scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atlas-generation">Atlas generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-meshes">Extracting meshes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-can-i-be-sure-i-get-credited-for-the-atlas-i-contributed">How can I be sure I get credited for the atlas I contributed?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-results">Inspecting results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uploading-the-atlas">Uploading the atlas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-an-existing-atlas">Updating an existing atlas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="sphinx-version">
+Created using <a href="https://sphinx-doc.org/">Sphinx</a> 8.1.3.
+<br/>
+</p>
+<p class="theme-version">
+Built with the
+<a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
+0.16.1.
+</p></div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><div class="things-in-a-row">
+</div></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

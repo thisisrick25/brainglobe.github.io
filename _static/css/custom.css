@@ -1,0 +1,30 @@
+html[data-theme=dark] {
+  --pst-color-primary: #ee9040;
+  --plt-color-secondary: #459db9;
+  --pst-color-link: #459db9;
+}
+
+html[data-theme=light] {
+  --pst-color-primary: #ee9040;
+  --plt-color-secondary: #459db9;
+  --pst-color-link: #459db9;
+}
+
+body .bd-article-container {
+  max-width: 100em !important;
+}
+
+.sponsor {
+  height: 100px;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
+.things-in-a-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
